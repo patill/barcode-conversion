@@ -3,13 +3,13 @@ var input = document.getElementById("Viivakoodi").value;
 var input2 = document.getElementById("Viivakoodi2").value;
 
 
-$('.content:not(.focus)').keyup(function(){					
+$('.content:not(.focus)').keyup(function(){
 
 
      var value = $(this).val();
      var contentAttr = $(this).attr('name');
 
-     $('.'+contentAttr+'').html(value.replace(/\r?\n/g,'<br/>')); //convert newlines into <br> tags
+     $('.'+contentAttr+'').text(value.replace(/\r?\n/g,'<br/>')); //convert newlines into <br> tags
 
  });
 
