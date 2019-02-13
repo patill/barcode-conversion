@@ -2,37 +2,21 @@
 <html lang="fi">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
+<link rel="stylesheet" href="../style/style.css">
+<script src="../js/lib/jquery-3.3.1.min.js"></script>
 <script src="../js/main.js" type="text/javascript"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+
 </head>
 <body>
 
-</script> <textarea name="mas" rows="15" class="content" ></textarea>
+  <textarea id="post-text" class="form-control" rows="8" placeholder="Syötä tähän viiakoodit!" required></textarea><br>
+  <input type="button" id="post-button" class="nappi" value="Muunna">
 
-<p>&nbsp;</p>
-<div class="mas" >Texts Comes here</div>
+  <div id="card-stack" class="output"></div>
 
-
-
-<textarea name="Viivakoodi" id="Viivakoodi" rows="8" cols="80"></textarea>
-
-<br>
-<input name="Viivakoodi2" id="Viivakoodi2" type="text">
-
-<button type="button" onclick='document.getElementById("barcodes").innerHTML =  input2 '>Konvertoi!</button>
-
-<button id="btn2">2: document.getElementById('myTextArea').value</button>
-
-<button id="btn3" type="button" onclick='document.getElementById("barcodes").innerHTML = input2'>Take input from the second field and show it</button>
-
-<!-- here the stuff gets represented -->
-<p id="barcodes"></p>
 
 
 
 </body>
-<noscript><h2 class="no-js-notification">Toimiakseen oikein, sivusto tarvitsee JavaScriptiä. Selaimesi ei tue Javascriptiä tai se on estetty.
-  <br>In order to function properly, this page requires Javascript. Your browser does not support it or it has been blocked.
-  </h2></noscript>
+
 </html>

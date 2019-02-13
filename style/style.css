@@ -1,0 +1,22 @@
+.output {
+  font-size: 16pt;
+  margin-top: 40pt;
+  margin-left: 50pt;
+  border: #1A4975;
+  border-width: 12pt;
+  width: 20em;
+  border-style: solid;
+  padding-left: 15pt;
+}
+
+.form-control {
+  margin-left: 50pt;
+  border-style: solid;
+  border-width: 4pt;
+  font-size: 14pt;
+}
+
+.nappi {
+  margin-left: 50pt;
+  margin-top: 4pt;
+}
