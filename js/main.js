@@ -1,5 +1,9 @@
 $(function(){
+$("#card-stack").hide(); //hide initially frame
+
 document.getElementById('post-button').addEventListener('click', function () {
+
+$("#card-stack").empty();//remove old entries and get div empty for new list
 var post = document.createElement('p');
 var postText = document.getElementById('post-text').value;
 var pisteet = /(AU|PA|PS|RA|PL|KÄ|PN|RE|PK)/g;
@@ -25,6 +29,6 @@ var card = document.createElement('div');
 card.appendChild(post);
 var cardStack = document.getElementById('card-stack');
 cardStack.insertBefore(card, cardStack.firstChild);
-
+$("#card-stack").show();
 });
 });
