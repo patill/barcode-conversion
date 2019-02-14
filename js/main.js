@@ -17,7 +17,7 @@ var i = 0;
 var  l = postArray.length;
 var filtered = []; //empty array
 for (i = 0; i < l; i++) {
-  if (!nega.test(postArray[i])) { //takes only those having 609+letter
+  if (!nega.test(postArray[i])) { //takes only those not having 609+letter
     filtered[filtered.length] = postArray[i].replace(pisteet, '609$&');//adding to the arry
   //  filtered = filtered.push(postArray[i]);
   }
