@@ -4,6 +4,7 @@ $("#card-stack").hide(); //hide initially frame
 document.getElementById('post-button').addEventListener('click', function () {
 
 $("#card-stack").empty();//remove old entries and get div empty for new list
+$("#wrapper").empty();
 var post = document.createElement('p');
 var postText = document.getElementById('post-text').value;
 var pisteet = /(AU|PA|PS|RA|PL|KÄ|PN|RE|PK|HU)/g;
@@ -40,8 +41,10 @@ for (i = 0; i < l; i++) {
   div_element.appendChild(output);
   var newline = document.createElement("br");
   div_element.appendChild(newline);
-  JsBarcode(".barcode").init();
-};
+  if (output.getAttribute('jsbarcode-value') > "") {
+    JsBarcode(".barcode").init();
+    };
+  };
 
 });
 });
