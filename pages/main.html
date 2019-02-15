@@ -4,17 +4,20 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="../style/style.css">
 <script src="../js/lib/jquery-3.3.1.min.js"></script>
+<script src="../js/lib/JsBarcode.code39.min.js" type="text/javascript"></script>
 <script src="../js/main.js" type="text/javascript"></script>
 
 </head>
 <body>
-
+  <h1>Muunna Porin vanhat viivakoodit ilman kuntatunnusta</h1>
+  <p id="info">Viivakoodit luetaan laatikkoon. Muunnetut viivakoodinumerot näytetään
+    laatikon alla sekä tekstinä että viivakoodeina.</p>
   <textarea id="post-text" class="form-control" rows="8" placeholder="Syötä tähän viiakoodit!" required></textarea><br>
   <input type="button" id="post-button" class="nappi" value="Muunna">
 
   <div id="card-stack" class="output"></div>
 
-
+  <div id="wrapper" class="wrapper"></div>
 
 
 </body>
