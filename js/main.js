@@ -7,7 +7,7 @@ $("#card-stack").empty();//remove old entries and get div empty for new list
 $("#wrapper").empty();
 var post = document.createElement('p');
 var postText = document.getElementById('post-text').value;
-var pisteet = /(AU|PA|PS|RA|PL|KÄ|PN|RE|PK|HU)/g;
+var pisteet = /(AU|AH|PA|PS|PL|KÄ|PN|RE|PK|HU|LS|PI|RU|SA|KE)/g;
 var nega = /609[AUPSLKHR]/g
 
 var postArray = postText.split('\n');
