@@ -32,10 +32,12 @@ cardStack.insertBefore(card, cardStack.firstChild);
 $("#card-stack").show();
 
 for (i = 0; i < l; i++) {
+  if (postArray[i].length > 3) { // get rid of empty "barcodes" containing only Enter
   var output = document.createElementNS("http://www.w3.org/2000/svg", "svg");
   output.className.baseVal = "barcode";
   output.setAttribute('jsbarcode-value',  filtered[i].trim());
   output.setAttribute('jsbarcode-format', 'code39');
+    };
 
   var div_element = document.getElementById("wrapper");
   div_element.appendChild(output);
