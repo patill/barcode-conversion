@@ -8,7 +8,7 @@ $(function(){
     $("#wrapper").empty();
     var post = document.createElement('p');
     var postText = document.getElementById('input').value;
-    var pisteet = /(AU|AH|PA|PS|PL|KÄ|PN|RE|PK|HU|LS|PI|RU|SA|KE|PM|MV|KA|JP|TO|VR|KY)/g;
+    var pisteet = /(AU|AH|HU|JP|KE|KÄ|LS|PA|PS|PL|PM|PN|PK|PI|RA|RV|RE|RU|SA|SM|TO|UA|UN|UP|UU|VA|VN|VK|VP|WP|VR)/g;
     var nega = /609[AUPSLKHR]/g
 
     var postArray = postText.split('\n');
