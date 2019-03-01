@@ -6,10 +6,10 @@ $(function(){
     // $('.'+contentAttr+'').text(value.replace(/\r?\n/g,'<br/>')); //convert newlines into <br> tags
     $("#output").empty();//remove old entries and get div empty for new list
     $("#wrapper").empty();
-    var post = document.createElement('p');
+    var post = document.createElement('textarea');
     var postText = document.getElementById('input').value;
-    var pisteet = /(AU|AH|HU|JP|KE|KÄ|LS|PA|PS|PL|PM|PN|PK|PI|RA|RV|RE|RU|SA|SM|TO|UA|UN|UP|UU|VA|VN|VK|VP|WP|VR)/g;
-    var nega = /609[AUPSLKHR]/g
+    var pisteet = /\B(AU|AH|FP|GP|HU|JP|KA|KJ|KE|KS|KY|KÄ|LS|PA|PS|PL|PM|PN|PK|PI|PO|PP|PV|RA|RV|RE|RU|SA|SM|TO|UA|UN|UP|UU|VA|VN|VK|VP|WP|VR)/g;
+    var nega = /609(AU|AH|FP|GP|HU|JP|KA|KJ|KE|KS|KY|KÄ|LS|PA|PS|PL|PM|PN|PK|PI|PO|PP|PV|RA|RV|RE|RU|SA|SM|TO|UA|UN|UP|UU|VA|VN|VK|VP|WP|VR)/g
 
     var postArray = postText.split('\n');
     var i = 0;
@@ -22,14 +22,15 @@ $(function(){
       else  {
         filtered[filtered.length] = postArray[i]; //adds the "wrong" ones anyway
       }
-      //console.log(postArray[i].length);
     };
     post.textContent = filtered.toString();
-    post.innerHTML = post.innerHTML.replace(/,/g, '<br>\n').replace(/^ /g, "");  // <-- THIS FIXES THE LINE BREAKS
-    var card = document.createElement('div');
+    post.innerHTML = post.innerHTML.replace(/,/g, '\n').replace(/^ /g, "").trim();  // <-- THIS FIXES THE LINE BREAKS
+    var card = document.getElementById('output');
+    post.setAttribute("class", "output");
+    post.setAttribute("rows", filtered.length -1);
     card.appendChild(post);
-    var cardStack = document.getElementById('output');
-    cardStack.insertBefore(card, cardStack.firstChild);
+    //var cardStack = document.getElementById('output');
+    //cardStack.insertBefore(card, cardStack.firstChild);
     $("#output").show();
 
     //convert bar barcodes

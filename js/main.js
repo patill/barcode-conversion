@@ -5,10 +5,10 @@ document.getElementById('post-button').addEventListener('click', function () {
 
 $("#card-stack").empty();//remove old entries and get div empty for new list
 $("#wrapper").empty();
-var post = document.createElement('p');
+var post = document.createElement('textarea');
 var postText = document.getElementById('post-text').value;
-var pisteet = /(AU|AH|HU|JP|KE|KÄ|LS|PA|PS|PL|PM|PN|PK|PI|RA|RV|RE|RU|SA|SM|TO|UA|UN|UP|UU|VA|VN|VK|VP|WP|VR)/g;
-var nega = /609[AUPSLKHR]/g
+var pisteet = /\B(AU|AH|FP|GP|HU|JP|KA|KJ|KE|KS|KY|KÄ|LS|PA|PS|PL|PM|PN|PK|PI|PO|PP|PV|RA|RV|RE|RU|SA|SM|TO|UA|UN|UP|UU|VA|VN|VK|VP|WP|VR)/g;
+var nega = /609(AU|AH|FP|GP|HU|JP|KA|KJ|KE|KS|KY|KÄ|LS|PA|PS|PL|PM|PN|PK|PI|PO|PP|PV|RA|RV|RE|RU|SA|SM|TO|UA|UN|UP|UU|VA|VN|VK|VP|WP|VR)/g
 
 var postArray = postText.split('\n');
 var i = 0;
@@ -24,11 +24,11 @@ for (i = 0; i < l; i++) {
 };
 
 post.textContent = filtered.toString();
-post.innerHTML = post.innerHTML.replace(/,/g, '<br>\n').replace(/^ /g, "");  // <-- THIS FIXES THE LINE BREAKS
-var card = document.createElement('div');
+post.innerHTML = post.innerHTML.replace(/,/g, '\n').replace(/^ /g, "").trim();  // <-- THIS FIXES THE LINE BREAKS
+post.setAttribute("class", "output");
+post.setAttribute("rows", filtered.length -1);
+var card = document.getElementById('card-stack');
 card.appendChild(post);
-var cardStack = document.getElementById('card-stack');
-cardStack.insertBefore(card, cardStack.firstChild);
 $("#card-stack").show();
 
 for (i = 0; i < l; i++) {
