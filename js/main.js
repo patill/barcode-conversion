@@ -37,6 +37,7 @@ $(function () {
     card.appendChild(post);
     $("#card-stack").show();
 
+    var outputArray = [];
     for (i = 0; i < l; i++) {
       if (postArray[i].length > 3) {
         // get rid of empty "barcodes" containing only Enter
@@ -47,15 +48,51 @@ $(function () {
         output.className.baseVal = "barcode";
         output.setAttribute("jsbarcode-value", filtered[i].trim());
         output.setAttribute("jsbarcode-format", "code39");
-      }
 
-      var div_element = document.getElementById("wrapper");
-      div_element.appendChild(output);
-      var newline = document.createElement("br");
-      div_element.appendChild(newline);
-      if (output.getAttribute("jsbarcode-value") > "") {
-        JsBarcode(".barcode").init();
+        var div_element = document.getElementById("wrapper"); //table
+
+        var th = document.createElement("th");
+        th.appendChild(output);
+
+        outputArray.push(th);
       }
     }
+
+    // https://stackoverflow.com/a/44069560
+    function groupArr(data, n) {
+      var group = [];
+      for (var i = 0, j = 0; i < data.length; i++) {
+        if (i >= n && i % n === 0) j++;
+        group[j] = group[j] || [];
+        group[j].push(data[i]);
+      }
+      return group;
+    }
+    var grouped = groupArr(outputArray, 3);
+    var trGrouped = [];
+    for (i in grouped) {
+      var tr = document.createElement("tr");
+      grouped[i].forEach((element) => {
+        tr.appendChild(element);
+      });
+
+      trGrouped.push(tr);
+    }
+
+    var div_element = document.getElementById("wrapper");
+    for (i in trGrouped) {
+      div_element.appendChild(trGrouped[i]);
+    }
+
+    if (output.getAttribute("jsbarcode-value") > "") {
+      JsBarcode(".barcode").init();
+    }
+    var barcodeSVG = document.querySelectorAll(".barcode");
+    for (var a = 0; a < barcodeSVG.length; a++) {
+      barcodeSVG[a].setAttribute("width", "300px");
+      barcodeSVG[a].setAttribute("height", "80px");
+    }
+
+    console.log(barcodeSVG);
   });
 });
