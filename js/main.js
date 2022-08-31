@@ -48,6 +48,7 @@ $(function () {
         output.className.baseVal = "barcode";
         output.setAttribute("jsbarcode-value", filtered[i].trim());
         output.setAttribute("jsbarcode-format", "code39");
+        output.setAttribute("jsbarcode-fontsize", 35);
 
         var div_element = document.getElementById("wrapper"); //table
 
@@ -68,7 +69,7 @@ $(function () {
       }
       return group;
     }
-    var grouped = groupArr(outputArray, 3);
+    var grouped = groupArr(outputArray, 2);
     var trGrouped = [];
     for (i in grouped) {
       var tr = document.createElement("tr");
