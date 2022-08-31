@@ -24,7 +24,22 @@
     ></textarea
     ><br />
     <input type="button" id="post-button" class="nappi" value="Muunna" />
-
+    <br />
+    <div id="print-labels">
+      <h2>Tulosta tarrat kahden tai kolmen sarakkeen arkille:</h2>
+      <form id="print-form">
+        <input
+          type="radio"
+          id="two-col"
+          name="rad"
+          value="2"
+          checked="checked"
+        />
+        <label for="two-col">Kaksi saraketta</label>
+        <input type="radio" id="three-col" name="rad" value="3" />
+        <label for="three-col">Kolme saraketta</label>
+      </form>
+    </div>
     <div id="card-stack"></div>
 
     <div class="wrapper">
