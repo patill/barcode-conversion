@@ -12,6 +12,7 @@ $(function () {
 
   function cleanUpBarcodes() {
     $("#wrapper").empty();
+    $(".div-wrapper").empty();
   }
 
   function showTableOptions() {
@@ -69,28 +70,23 @@ $(function () {
     $("#card-stack").show();
   }
 
-  function groupBarcodes(arr, n = 2) {
-    var grouped = groupArr(arr, n);
-    var trGrouped = [];
+  function barcodesToGrid(arr, tableColumns) {
+    var grouped = groupArr(arr, tableColumns);
+    var gridGrouped = [];
     for (i in grouped) {
-      var tr = document.createElement("tr");
-      grouped[i].forEach((element) => {
-        tr.appendChild(element);
-      });
-
-      trGrouped.push(tr);
+      var row = document.createElement("div");
+      row.classList.add("row");
+      grouped[i].forEach((el) => row.appendChild(el));
+      gridGrouped.push(row);
     }
-    return trGrouped;
-  }
 
-  function BarcodesToTable(arr) {
-    var div_element = document.getElementById("wrapper");
-    for (i in arr) {
-      div_element.appendChild(arr[i]);
+    var wrapper = document.querySelector(".div-wrapper");
+    for (i in gridGrouped) {
+      wrapper.appendChild(gridGrouped[i]);
     }
   }
 
-  function produceBarcodeSVG() {
+  function produceBarcodeSVGTag(element) {
     var i = 0;
     var l = filteredArray.length;
 
@@ -106,20 +102,51 @@ $(function () {
         output.setAttribute("jsbarcode-format", "code39");
         output.setAttribute("jsbarcode-fontsize", 35);
 
-        var th = document.createElement("th");
-        th.appendChild(output);
+        var td = document.createElement(element);
+        td.classList.add("column");
+        td.appendChild(output);
 
-        outputArray.push(th);
+        outputArray.push(td);
       }
     }
   }
 
-  function setBarcodeDimensions(width = "300px", length = "80px") {
-    var barcodeSVG = document.querySelectorAll(".barcode");
+  //Sets barcode dimensions for two or three column printing
+  function setBarcodeDimensions(tableColumns = 3) {
+    var width, height, rows, columnWidth;
+    if (tableColumns == 2) {
+      width = "70mm";
+      height = "30mm";
+      rows = 7;
+      columnWidth = "80mm";
+    }
+    if (tableColumns == 3) {
+      width = "60mm";
+      height = "25mm";
+      rows = 11;
+      columnWidth = "70mm";
+    }
+    const barcodeSVG = document.querySelectorAll(".barcode");
     for (var a = 0; a < barcodeSVG.length; a++) {
       barcodeSVG[a].setAttribute("width", width);
-      barcodeSVG[a].setAttribute("height", length);
+      barcodeSVG[a].setAttribute("height", height);
     }
+    const tableRows = document.querySelectorAll(".row");
+    for (var c = 0; c < tableRows.length; c++) {
+      tableRows[c].setAttribute("style", `height: ${height};`);
+      if (c % rows === (rows - 1 > 1 ? rows - 1 : 1)) {
+        tableRows[c].setAttribute(
+          "style",
+          `height: ${height}; page-break-after:always;`
+        );
+      }
+    }
+    const tableCells = document.querySelectorAll(".column");
+    for (var a = 0; a < tableCells.length; a++) {
+      tableCells[a].setAttribute("style", `width: ${columnWidth};`);
+    }
+    const printStyle = document.querySelector("#print");
+    printStyle.textContent = `.outer {margin: 0;}`;
   }
 
   //Click button to convert input
@@ -129,8 +156,8 @@ $(function () {
     showTableOptions();
     convertInputData();
     printConvertedBarcodeTexts();
-    produceBarcodeSVG();
-    BarcodesToTable(groupBarcodes(outputArray));
+    produceBarcodeSVGTag("div");
+    barcodesToGrid(outputArray, 3);
     JsBarcode(".barcode").init(); //Print barcodes
     setBarcodeDimensions();
   });
@@ -139,19 +166,10 @@ $(function () {
   document
     .getElementById("print-form")
     .addEventListener("click", function (val) {
-      var tableColumns = val.target.value * 1;
-      var width, length;
-      if (tableColumns === 2) {
-        width = "300px";
-        length = "80px";
-      }
-      if (tableColumns === 3) {
-        width = "180px";
-        length = "80px";
-      }
+      var tableColumns = val.target.value;
       cleanUpBarcodes();
-      BarcodesToTable(groupBarcodes(outputArray, tableColumns));
+      barcodesToGrid(outputArray, tableColumns);
       JsBarcode(".barcode").init(); //Print barcodes
-      setBarcodeDimensions(width, length); //TODO: find right dimensions
+      setBarcodeDimensions(tableColumns);
     });
 });
