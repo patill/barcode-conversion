@@ -53,8 +53,8 @@ form {
 }
 
 .barcode {
-  padding-right: 5mm;
-  padding-left: 5mm;
+  padding-right: 6mm;
+  padding-left: 6mm;
   padding-top: 2mm;
 }
 
@@ -111,14 +111,9 @@ form {
     padding: 0;
   }
 
-  .barcode {
-    padding-right: 5mm;
-    padding-left: 5mm;
-  }
-
   .column {
     float: left;
-    width: 69mm;
+    width: 68mm;
   }
 
   .row {

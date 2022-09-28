@@ -121,10 +121,10 @@ $(function () {
       columnWidth = "80mm";
     }
     if (tableColumns == 3) {
-      width = "60mm";
+      width = "56mm";
       height = "25mm";
       rows = 11;
-      columnWidth = "70mm";
+      columnWidth = "68mm";
     }
     const barcodeSVG = document.querySelectorAll(".barcode");
     for (var a = 0; a < barcodeSVG.length; a++) {
